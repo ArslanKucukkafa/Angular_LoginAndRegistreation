@@ -22,6 +22,6 @@ export class LoginComponent implements OnInit {
 
 
   userLogin(){
-this.userService.getUsers(this.user).subscribe(data =>{console.log(data)})
+this.userService.getUsers(this.user)
   }
 }

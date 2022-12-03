@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Product } from 'src/app/models/product/product';
+import { ProductService } from 'src/app/services/product.service';
 
 @Component({
   selector: 'app-form',
@@ -7,9 +9,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FormComponent implements OnInit {
 
-  constructor() { }
+product:Product = new Product;
+
+
+  constructor(private productss:ProductService) { 
+
+  }
 
   ngOnInit(): void {
+  }
+
+  productList(){
+    this.productss.getProduct().subscribe(data =>{
+      this.product=data
+    })
+    console.log(this.product.result[0].productName)
   }
 
 }
