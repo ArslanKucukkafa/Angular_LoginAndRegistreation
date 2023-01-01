@@ -16,6 +16,7 @@ export class RegisterComponent implements OnInit {
 
 
 userRegister(){
+  console.log(this.user.password,this.user.username,this.user.email)
   this.userService.saveUser(this.user).subscribe(data =>{console.log(data)})
 }
 

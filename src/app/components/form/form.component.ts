@@ -1,4 +1,6 @@
+import { Token } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
+
 import { elementAt } from 'rxjs';
 import { Product } from 'src/app/models/product/product';
 import { ProductService } from 'src/app/services/product.service';
@@ -10,6 +12,11 @@ export class Pro{
   price:Number;
   piece:Number;
   totalPrice:Number;
+}
+
+export class schemaProduct {
+  token:string
+  result:Pro
 }
 
 
@@ -24,9 +31,7 @@ export class FormComponent implements OnInit {
 
 datas: Array<Pro> = []; 
 
-fruits: Array<Pro> = []; 
-
-
+schema:schemaProduct = new schemaProduct
 
 product:Product = new Product;
 get: Number;
@@ -37,6 +42,7 @@ get: Number;
   }
 
   ngOnInit(): void {
+    this.productList();
   }
 
 
@@ -54,16 +60,39 @@ get: Number;
       this.product=data
     })
   }
-  
+
   removeDocument(Id:Number){
     this.datas.forEach( (item, index) => {
       if(item.id === Id) this.datas.splice(index,1);
     });
  }
 
+viewShoppingCart(){
+  this.viewToken();
+  const body ={
+    "token":localStorage.getItem("token"),
+    "parameter": {      
+       "data":this.datas
+    }
+  }
+  this.productss.setProductCart(body)
+}
+
+viewToken(){
+  const checkbox = document.getElementById(
+    'defaultCheck1',
+  ) as HTMLInputElement | null;
+
+  if (checkbox?.checked) {
+    console.log('Checkbox is checked');
+  } else {
+    console.log('Checkbox is NOT checked');
+  }
+
+}
+
+
  emptyArray(){
   this.datas = []; 
  }
-
-
 }
