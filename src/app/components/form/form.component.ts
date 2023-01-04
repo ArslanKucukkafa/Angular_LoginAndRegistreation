@@ -67,13 +67,13 @@ get: Number;
     });
  }
 
-viewShoppingCart(){
-  this.viewToken();
+saveShoppingCart(){
+  
   const body ={
     "token":localStorage.getItem("token"),
+    "gelir":{"isValidEarnings":this.viewToken(),"amount":this.viewToken1()},
     "parameter": {      
-       "data":this.datas
-    }
+       "data":this.datas}
   }
   this.productss.setProductCart(body)
 }
@@ -82,13 +82,17 @@ viewToken(){
   const checkbox = document.getElementById(
     'defaultCheck1',
   ) as HTMLInputElement | null;
-
+var a= true
   if (checkbox?.checked) {
-    console.log('Checkbox is checked');
+    a=true
   } else {
-    console.log('Checkbox is NOT checked');
-  }
-
+a=false  }
+return a
+}
+viewToken1(){
+  const gelir = document.getElementById("earnAmount") as HTMLInputElement | null;
+  console.log( "Helloejrkgjrek -------"+ this.viewToken())
+  console.log(gelir.value)
 }
 
 
